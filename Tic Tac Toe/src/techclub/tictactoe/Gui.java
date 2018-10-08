@@ -40,8 +40,10 @@ public class Gui extends JFrame implements ActionListener {
 	 */
 	public static Gui getInstance() {
 		if (instance == null) {
-			instance = new Gui();
-			instance.initializeGui();
+			synchronized (Gui.class) {
+				instance = new Gui();
+				instance.initializeGui();
+			}
 		}
 		return instance;
 	}
@@ -51,25 +53,27 @@ public class Gui extends JFrame implements ActionListener {
 	/** Initializes the Gui with the specified frame width and height. */
 	public void initializeGui() {
 		if (buttons == null) {
-			this.setPreferredSize(new Dimension(400, 400));
-			this.setResizable(false);
-			this.pack();
-			this.setLocationRelativeTo(null);
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			this.setTitle("Tic Tac Toe");
-			this.setVisible(true);
-		
-			this.panel = new JPanel();
-			this.layout = new GridLayout(3, 3);
-			this.panel.setLayout(layout);
-			this.add(panel);
+			synchronized (this) {
+				this.setPreferredSize(new Dimension(400, 400));
+				this.setResizable(false);
+				this.pack();
+				this.setLocationRelativeTo(null);
+				this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				this.setTitle("Tic Tac Toe");
+				this.setVisible(true);
 			
-			board = Board.getInstance();
-			
-			// X starts first.
-			xTurn = true;
-			
-			createButtons();
+				this.panel = new JPanel();
+				this.layout = new GridLayout(3, 3);
+				this.panel.setLayout(layout);
+				this.add(panel);
+				
+				board = Board.getInstance();
+				
+				// X starts first.
+				xTurn = true;
+				
+				createButtons();
+			}
 		}
 	}
 	
