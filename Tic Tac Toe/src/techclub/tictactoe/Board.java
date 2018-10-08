@@ -24,7 +24,7 @@ public class Board {
 	
 	private Board() {
 		this.buttonStates = new byte[3][3];
-		this.gui = Gui.createOrGetInstance();
+		this.gui = Gui.getInstance();
 	}
 	
 	/**

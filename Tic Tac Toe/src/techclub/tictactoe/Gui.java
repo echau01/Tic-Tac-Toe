@@ -38,7 +38,7 @@ public class Gui extends JFrame implements ActionListener {
 	 * Creates and returns the singleton instance if it has not already been created. If 
 	 * the instance is not null, then the method simply returns the instance.
 	 */
-	public static Gui createOrGetInstance() {
+	public static Gui getInstance() {
 		if (instance == null) {
 			instance = new Gui();
 			instance.initializeGui();
@@ -49,9 +49,10 @@ public class Gui extends JFrame implements ActionListener {
 	private Gui() {}
 	
 	/** Initializes the Gui with the specified frame width and height. */
-	private void initializeGui() {
+	public void initializeGui() {
 		if (buttons == null) {
 			this.setPreferredSize(new Dimension(400, 400));
+			this.setResizable(false);
 			this.pack();
 			this.setLocationRelativeTo(null);
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
