@@ -21,7 +21,8 @@ public class Gui extends JFrame implements ActionListener {
 	private JPanel panel;
 	private GridLayout layout;
 	
-	// Indicates whether it is X's turn
+	// Indicates whether it is X's turn.
+	// Note: X always goes first when the game starts.
 	private boolean xTurn;
 	
 	// The buttons array contains the 9 buttons on the board. It is a 3 x 3
@@ -84,6 +85,9 @@ public class Gui extends JFrame implements ActionListener {
 				JButton button = new JButton();
 				buttons[row][cell] = button;
 				button.addActionListener(this);
+				// The action command lets the program know which buttons are pressed.
+				// Each button has a specific action command depending on the
+				// row and cell (column) it is in.
 				button.setActionCommand(row + " " + cell);
 				panel.add(buttons[row][cell]);
 			}
@@ -117,6 +121,7 @@ public class Gui extends JFrame implements ActionListener {
 			}
 		}
 		board.resetButtonStates();
+		xTurn = true;
 	}
 	
 	/**
