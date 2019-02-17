@@ -50,7 +50,7 @@ public class Gui extends JFrame implements ActionListener {
 	
 	private Gui() {}
 	
-	/** Initializes the Gui with the specified frame width and height. */
+	/** Initializes the Gui. */
 	public void initializeGui() {
 		if (buttons == null) {
 			synchronized (this) {
